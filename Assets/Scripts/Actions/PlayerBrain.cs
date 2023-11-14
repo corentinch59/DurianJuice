@@ -4,7 +4,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Durian
+namespace Durian.Actions
 {
     public class PlayerBrain : MonoBehaviour
     {

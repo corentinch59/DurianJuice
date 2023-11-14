@@ -2,7 +2,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Durian
+namespace Durian.Actions
 {
     public class PlayerMovement : MonoBehaviour
     {
