@@ -21,25 +21,10 @@ namespace Durian
             _rb.AddForce(_read * _speed * Time.fixedDeltaTime, ForceMode2D.Force);
         }
 
-        public void Move(InputAction.CallbackContext ctx)
+        public void Move(Vector2 read)
         {
-            if (ctx.started)
-            {
-                _rb.velocity = Vector2.zero;
-            }
-
-            if (ctx.performed)
-            {
-                _read = ctx.ReadValue<Vector2>();
-                Debug.Log(_read);
-            }
-
-            if (ctx.canceled)
-            {
-                _read = Vector2.zero;
-                _rb.velocity = Vector2.zero;
-            }
-
+            _rb.velocity = Vector2.zero;
+            _read = read;
         }
     }
 }
