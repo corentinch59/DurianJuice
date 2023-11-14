@@ -8,7 +8,7 @@ namespace Durian
 {
     public class PlayerBrain : MonoBehaviour
     {
-        [SerializeField, BoxGroup("Dependencies")] private IPlayerMovement _movement;
+        [SerializeField, BoxGroup("Dependencies")] private PlayerMovement _movement;
         //[SerializeField, BoxGroup("Dependencies")] attack
 
         [SerializeField, BoxGroup("Input")] private InputActionProperty _moveInput;
@@ -16,13 +16,14 @@ namespace Durian
 
         private void Start()
         {
-            _moveInput.action.started += _movement.Move;
+            _moveInput.action.performed += _movement.Move;
         }
 
         private void OnDestroy()
         {
             _moveInput.action.started -= _movement.Move;
         }
+
     }
 }
 
