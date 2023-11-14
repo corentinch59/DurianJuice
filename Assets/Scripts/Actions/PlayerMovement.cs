@@ -13,13 +13,13 @@ namespace Durian.Actions
         [SerializeField, BoxGroup("Setup")] private float _maxSpeed;
 
         private Vector2 _read;
-        private Vector3 leftEdge;
-        private Vector3 rightEdge;
+        private Vector3 _leftEdge;
+        private Vector3 _rightEdge;
 
         private void Start()
         {
-            leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-            rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+            _leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
+            _rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
         }
 
         private void FixedUpdate()
@@ -27,13 +27,13 @@ namespace Durian.Actions
             if(_read == Vector2.zero)
                 _rb.velocity = Vector2.zero;
 
-            if (_read == Vector2.right && _playerTransform.position.x >= rightEdge.x)
+            if (_read == Vector2.right && _playerTransform.position.x >= _rightEdge.x)
             {
                 _rb.velocity = Vector2.zero;
                 return;
             }
 
-            if (_read == Vector2.left & _playerTransform.position.x <= leftEdge.x)
+            if (_read == Vector2.left & _playerTransform.position.x <= _leftEdge.x)
             {
                 _rb.velocity = Vector2.zero;
                 return;

@@ -43,6 +43,7 @@ namespace Durian
         public void Die()
         {
             if (!IsDead) return;
+            Destroy(gameObject);
             OnDie?.Invoke();
         }
     }
