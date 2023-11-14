@@ -9,10 +9,10 @@ namespace Durian.Actions
     public class PlayerBrain : MonoBehaviour
     {
         [SerializeField, BoxGroup("Dependencies")] private PlayerMovement _movement;
-        //[SerializeField, BoxGroup("Dependencies")] attack
+        [SerializeField, BoxGroup("Dependencies")] private PlayerShoot _attack;
 
-        [SerializeField, BoxGroup("Input")] private InputActionProperty _moveInput;
-        [SerializeField, BoxGroup("Input")] private InputActionProperty _attackInput;
+        [SerializeField, BoxGroup("Inputs")] private InputActionProperty _moveInput;
+        [SerializeField, BoxGroup("Inputs")] private InputActionProperty _attackInput;
 
         private void Awake()
         {
@@ -48,7 +48,7 @@ namespace Durian.Actions
 
         private void Shoot(InputAction.CallbackContext ctx)
         {
-            Debug.Log("Pew !");
+            _attack.ShootBullet();
         }
 
     }

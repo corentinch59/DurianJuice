@@ -9,6 +9,10 @@ namespace Durian.Actions
     {
         [SerializeField, BoxGroup("Prefab")] private Bullet _bullet;
 
-
+        public void ShootBullet()
+        {
+            Bullet bullet = Instantiate(_bullet, transform.position, Quaternion.identity);
+            bullet.InitBullet(new Vector2(0.0f, 1.0f));
+        }
     }
 }

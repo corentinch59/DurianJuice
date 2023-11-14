@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+namespace Durian
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Bullet : MonoBehaviour
     {
-        
-    }
+        [SerializeField, BoxGroup("Dependencies")] private Rigidbody2D _rb;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [SerializeField, BoxGroup("Setup")] private float _bulletSpeed;
+        [SerializeField, BoxGroup("Setup")] private float _damage;
+
+        private float _elapsedTime;
+
+        private void Update()
+        {
+            _elapsedTime += Time.deltaTime;
+            if (_elapsedTime > 2)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        public void InitBullet(Vector2 direction)
+        {
+            _rb.velocity = direction * _bulletSpeed;
+        }
     }
 }
+
