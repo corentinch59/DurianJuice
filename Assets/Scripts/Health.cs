@@ -6,16 +6,20 @@ namespace Durian
 {
     public class Health : MonoBehaviour, IDamageable
     {
-        private Alterable<float> _maxHealth;
+        [SerializeField] private float _maxHealth;
 
         public float CurrentHealth { get; private set; }
 
-        public bool IsDead => CurrentHealth > 0;
-        public Alterable<float> MaxHealth { get => _maxHealth ??= new Alterable<float>(CurrentHealth); }
+        public bool IsDead => CurrentHealth <= 0;
 
         public event Action<float> OnDamage;
         public event Action<float> OnRegen;
         public event Action OnDie;
+
+        private void Start()
+        {
+            CurrentHealth = _maxHealth;
+        }
 
         public void TakeDamage(float amount)
         {
@@ -24,6 +28,7 @@ namespace Durian
 
             CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
             OnDamage?.Invoke(amount);
+            Die();
         }
 
         public void Recover(float amount)
@@ -31,7 +36,7 @@ namespace Durian
             Assert.IsTrue(amount >= 0);
             if (IsDead) return;
 
-            CurrentHealth = Mathf.Min(_maxHealth.CalculateValue(), CurrentHealth + amount);
+            CurrentHealth = Mathf.Min(_maxHealth, CurrentHealth + amount);
             OnRegen?.Invoke(amount);
         }
 

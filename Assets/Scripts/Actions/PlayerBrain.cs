@@ -8,8 +8,8 @@ namespace Durian.Actions
 {
     public class PlayerBrain : MonoBehaviour
     {
-        [SerializeField, BoxGroup("Dependencies")] private PlayerMovement _movement;
-        [SerializeField, BoxGroup("Dependencies")] private PlayerShoot _attack;
+        [SerializeField, BoxGroup("Dependencies"), Required("Player Movement script required")] private PlayerMovement _movement;
+        [SerializeField, BoxGroup("Dependencies"), Required("Player Shoot script required")] private PlayerShoot _attack;
 
         [SerializeField, BoxGroup("Inputs")] private InputActionProperty _moveInput;
         [SerializeField, BoxGroup("Inputs")] private InputActionProperty _attackInput;
