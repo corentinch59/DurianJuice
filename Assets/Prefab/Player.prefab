@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 5995781147356069380}
+  _playerTransform: {fileID: 3166415681193612816}
   _speed: 2000
   _maxSpeed: 5
 --- !u!114 &7996453379191107389
