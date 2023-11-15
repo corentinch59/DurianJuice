@@ -8,31 +8,30 @@ namespace Durian
     public class EnemyManager : MonoBehaviour
     {
         [SerializeField, Category("Prefab")] private Entity _enemy;
-        [SerializeField, Category("Reference")] private GameObject _spawnPoint;
         [SerializeField, Category("Reference")] private Rigidbody2D _rb;
-        [SerializeField, Category("Setup")] private Vector2 _offset;
+        [SerializeField, Category("Setup")] private Vector2 _spawnOffset;
         [SerializeField, Category("Setup")] private float _speed;
+        [SerializeField, Category("Setup")] private float _offset;
         
         private Entity[,] _enemies;
         private Vector2 _direction;
-        private Vector2Int _remaining;
+        private float _cooldown;
 
         private void Start()
         {
-            _remaining.x = 11;
-            _remaining.y = 5;
             _enemies = new Entity[5, 11];
             for (int i = 0; i < 5; ++i)
             {
                 for (int j = 0; j < 11; ++j)
                 {
                     Entity newEntity = Instantiate(_enemy, transform);
-                    newEntity.transform.position = _spawnPoint.transform.position + new Vector3(1.0f * j * _offset.x, 1.0f * i * _offset.y * -1.0f, 0.0f);
+                    newEntity.transform.position = transform.position + new Vector3(1.0f * j * _spawnOffset.x, 1.0f * i * _spawnOffset.y * -1.0f, 0.0f);
                     _enemies[i,j] = newEntity;
                 }
             }
 
             _direction = Vector2.right;
+            _rb.velocity = _direction * _speed;
         }
 
         private void Update()
@@ -40,26 +39,26 @@ namespace Durian
             Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
             Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
 
-            if (_direction == Vector2.right)
+            foreach (Transform entity in transform)
             {
-                bool IsEnemy = false;
-                for (int i = _remaining.x; i > 0; --i)
+                if (_direction == Vector2.left && entity.transform.position.x <= leftEdge.x )
                 {
-                    if (IsEnemy)
-                        break;
-
-                    for (int j = 0; j < _remaining.y; ++j)
-                    {
-
-                    }
+                    ChangeDirection();
+                }
+                else if (_direction == Vector2.right && entity.transform.position.x >= rightEdge.x )
+                {
+                    ChangeDirection();
                 }
             }
         }
 
-        private IEnumerator DecideShooter()
+        private void ChangeDirection()
         {
-            yield return null;
+            transform.position -= new Vector3(0.0f, _offset, 0.0f);
+            _direction.x *= -1.0f;
+            _rb.velocity = _direction * _speed;
         }
+
     }
 }
 

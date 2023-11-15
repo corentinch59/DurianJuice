@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 5995781147356069380}
   _playerTransform: {fileID: 3166415681193612816}
-  _speed: 2000
-  _maxSpeed: 5
+  _speed: 1000
+  _maxSpeed: 4
 --- !u!114 &7996453379191107389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3166415681193612816}
@@ -322,5 +322,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
