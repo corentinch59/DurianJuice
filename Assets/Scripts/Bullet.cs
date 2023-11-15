@@ -38,7 +38,8 @@ namespace Durian
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_owner == other.gameObject) return;
+            Debug.Log("Owner is : " + _owner.tag + " other is : " + other.gameObject.tag);
+            if (_owner.tag == other.gameObject.tag) return;
 
             IHitable hitable;
             if (other.gameObject.TryGetComponent<IHitable>(out hitable))

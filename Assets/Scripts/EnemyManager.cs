@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace Durian
@@ -9,29 +10,35 @@ namespace Durian
     {
         [SerializeField, Category("Prefab")] private Entity _enemy;
         [SerializeField, Category("Reference")] private Rigidbody2D _rb;
+        [SerializeField, Category("Reference")] private Bullet _bullet;
         [SerializeField, Category("Setup")] private Vector2 _spawnOffset;
         [SerializeField, Category("Setup")] private float _speed;
         [SerializeField, Category("Setup")] private float _offset;
-        
-        private Entity[,] _enemies;
+        [SerializeField, Category("Setup")] private float _attackRate;
+
+        private Vector2 _entities = new Vector2(5,11);
+        private int NbEntities => (int)_entities.x * (int)_entities.y;
+        private int _nbEntitiesDead;
+        private int _nbEntitiesAlive => NbEntities - _nbEntitiesDead;
+
         private Vector2 _direction;
-        private float _cooldown;
 
         private void Start()
         {
-            _enemies = new Entity[5, 11];
             for (int i = 0; i < 5; ++i)
             {
                 for (int j = 0; j < 11; ++j)
                 {
                     Entity newEntity = Instantiate(_enemy, transform);
                     newEntity.transform.position = transform.position + new Vector3(1.0f * j * _spawnOffset.x, 1.0f * i * _spawnOffset.y * -1.0f, 0.0f);
-                    _enemies[i,j] = newEntity;
+                    newEntity.Health.OnDie += EntityDied;
                 }
             }
 
             _direction = Vector2.right;
             _rb.velocity = _direction * _speed;
+
+            InvokeRepeating(nameof(EnemyShoot), _attackRate, _attackRate);
         }
 
         private void Update()
@@ -50,6 +57,7 @@ namespace Durian
                     ChangeDirection();
                 }
             }
+
         }
 
         private void ChangeDirection()
@@ -59,6 +67,23 @@ namespace Durian
             _rb.velocity = _direction * _speed;
         }
 
+        private void EnemyShoot()
+        {
+            foreach (Transform entity in transform)
+            {
+                if (Random.value < (1.0f / _nbEntitiesAlive))
+                {
+                    Bullet bullet = Instantiate(_bullet, entity.position, Quaternion.identity);
+                    bullet.InitBullet(new Vector2(0.0f, -1.0f));
+                    bullet.Owner = gameObject;
+                }
+            }
+        }
+
+        private void EntityDied()
+        {
+            _nbEntitiesDead++;
+        }
     }
 }
 

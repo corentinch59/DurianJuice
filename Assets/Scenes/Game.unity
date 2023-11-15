@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 740499223}
   m_Layer: 0
   m_Name: EnemyManager
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -435,9 +435,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemy: {fileID: 1750345630993385984, guid: 5d406504e700a1442ae1c1269032b009, type: 3}
   _rb: {fileID: 740499223}
+  _bullet: {fileID: 1114499202899686943, guid: 5bd71b3785d06c6409ab77bb39ddf735, type: 3}
   _spawnOffset: {x: 0.55, y: 0.55}
-  _speed: 0.5
+  _speed: 0.3
   _offset: 0.5
+  _attackRate: 1
 --- !u!50 &740499223
 Rigidbody2D:
   serializedVersion: 4
@@ -646,7 +648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3166415681193612816, guid: f13910c6b5d5a0f44b9e0843e59770ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.9
+      value: -3.13
       objectReference: {fileID: 0}
     - target: {fileID: 3166415681193612816, guid: f13910c6b5d5a0f44b9e0843e59770ab, type: 3}
       propertyPath: m_LocalPosition.z
