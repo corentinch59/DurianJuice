@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using UnityEditorInternal;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Durian
 {
     public class EnemyManager : MonoBehaviour
     {
-        [SerializeField, Category("Prefab")] private Entity _enemy;
-        [SerializeField, Category("Reference")] private Rigidbody2D _rb;
-        [SerializeField, Category("Reference")] private Bullet _bullet;
-        [SerializeField, Category("Setup")] private Vector2 _spawnOffset;
-        [SerializeField, Category("Setup")] private float _speed;
-        [SerializeField, Category("Setup")] private float _offset;
-        [SerializeField, Category("Setup")] private float _attackRate;
+        [SerializeField, BoxGroup("Prefab")] private Entity _enemy;
+
+        [SerializeField, BoxGroup("Reference")] private Rigidbody2D _rb;
+        [SerializeField, BoxGroup("Reference")] private Bullet _bullet;
+
+        [SerializeField, BoxGroup("Setup")] private Vector2 _spawnOffset;
+        [SerializeField, BoxGroup("Setup")] private float _speed;
+        [SerializeField, BoxGroup("Setup")] private float _offset;
+        [SerializeField, BoxGroup("Setup")] private float _attackRate;
 
         private Vector2 _entities = new Vector2(5,11);
         private int NbEntities => (int)_entities.x * (int)_entities.y;

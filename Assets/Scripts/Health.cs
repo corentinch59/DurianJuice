@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 namespace Durian
 {
@@ -12,9 +13,21 @@ namespace Durian
 
         public bool IsDead => CurrentHealth <= 0;
 
-        public event Action<float> OnDamage;
-        public event Action<float> OnRegen;
-        public event Action OnDie;
+        [SerializeField] private UnityEvent _onDamage;
+        [SerializeField] private UnityEvent _onDie;
+
+        public event UnityAction OnDamage
+        {
+            add => _onDamage.AddListener(value);
+            remove => _onDamage.RemoveListener(value);
+        }
+
+        public event UnityAction OnDie
+        {
+            add => _onDie.AddListener(value);
+            remove => _onDie.RemoveListener(value);
+        }
+
 
         private void Start()
         {
@@ -27,24 +40,15 @@ namespace Durian
             if (IsDead) return;
 
             CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
-            OnDamage?.Invoke(amount);
+            _onDamage?.Invoke();
             Die();
-        }
-
-        public void Recover(float amount)
-        {
-            Assert.IsTrue(amount >= 0);
-            if (IsDead) return;
-
-            CurrentHealth = Mathf.Min(_maxHealth, CurrentHealth + amount);
-            OnRegen?.Invoke(amount);
         }
 
         public void Die()
         {
             if (!IsDead) return;
             Destroy(gameObject);
-            OnDie?.Invoke();
+            _onDie?.Invoke();
         }
     }
 }
