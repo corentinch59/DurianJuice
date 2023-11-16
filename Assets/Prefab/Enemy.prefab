@@ -68,6 +68,9 @@ MonoBehaviour:
   _onDie:
     m_PersistentCalls:
       m_Calls: []
+  _onHealth:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1989256818920268619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -259,12 +262,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d61088016f5aa7d448bcd4f7297200d7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 235f5c092a9ba214eabfcf21404e68c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.28, y: 3.71}
+  m_Size: {x: 0.88409704, y: 1.0014551}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
