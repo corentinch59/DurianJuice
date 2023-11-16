@@ -544,6 +544,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4881384130206805404, guid: 4a993b023d7f40d42ae9b76d54a59a47, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881384130206805404, guid: 4a993b023d7f40d42ae9b76d54a59a47, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6249746649049664184, guid: 4a993b023d7f40d42ae9b76d54a59a47, type: 3}
       propertyPath: m_Name
       value: Poisson
