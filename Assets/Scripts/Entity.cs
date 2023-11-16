@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -13,9 +14,16 @@ namespace Durian
 
         public Health Health => _health;
 
+        public int beatIndex { get; set; }
         public void Hit(int amount)
         {
             _health.TakeDamage(amount);
+        }
+
+        public void DestroyObject()
+        {
+            Destroy(gameObject);
+            MusicSyncManager.Instance.RemoveObjectChildToBeat(gameObject);
         }
 
     }
