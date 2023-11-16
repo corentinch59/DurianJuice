@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Durian
 {
@@ -13,6 +14,8 @@ namespace Durian
         [SerializeField, BoxGroup("Setup")] private float _bulletSpeed;
         [SerializeField, BoxGroup("Setup")] private float _damage;
 
+        [SerializeField, BoxGroup("Events")] private UnityEvent _onBulletTouched;
+
         private float _elapsedTime;
         private GameObject _owner;
 
@@ -20,6 +23,12 @@ namespace Durian
         {
             get => _owner;
             set => _owner = value;
+        }
+
+        public event UnityAction OnBulletTouched
+        {
+            add => _onBulletTouched.AddListener(value);
+            remove => _onBulletTouched.RemoveListener(value);
         }
 
         private void Update()
@@ -38,13 +47,14 @@ namespace Durian
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_owner == other.gameObject) return;
+            Debug.Log("Owner is : " + _owner.tag + " other is : " + other.gameObject.tag);
+            if (_owner.tag == other.gameObject.tag) return;
 
             IHitable hitable;
             if (other.gameObject.TryGetComponent<IHitable>(out hitable))
             {
                 hitable.Hit(1);
-                Destroy(gameObject);
+                _onBulletTouched?.Invoke();
             }
         }
     }

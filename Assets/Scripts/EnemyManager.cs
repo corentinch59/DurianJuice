@@ -1,38 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Durian
 {
     public class EnemyManager : MonoBehaviour
     {
-        [SerializeField, Category("Prefab")] private Entity _enemy;
-        [SerializeField, Category("Reference")] private GameObject _spawnPoint;
-        [SerializeField, Category("Reference")] private Rigidbody2D _rb;
-        [SerializeField, Category("Setup")] private Vector2 _offset;
-        [SerializeField, Category("Setup")] private float _speed;
-        
-        private Entity[,] _enemies;
+        [SerializeField, BoxGroup("Prefab")] private Entity _enemy;
+
+        [SerializeField, BoxGroup("Reference")] private Rigidbody2D _rb;
+        [SerializeField, BoxGroup("Reference")] private Bullet _bullet;
+
+        [SerializeField, BoxGroup("Setup")] private Vector2 _spawnOffset;
+        [SerializeField, BoxGroup("Setup")] private float _speed;
+        [SerializeField, BoxGroup("Setup")] private float _offset;
+        [SerializeField, BoxGroup("Setup")] private float _attackRate;
+
+        private Vector2 _entities = new Vector2(5,11);
+        private int NbEntities => (int)_entities.x * (int)_entities.y;
+        private int _nbEntitiesDead;
+        private int _nbEntitiesAlive => NbEntities - _nbEntitiesDead;
+
         private Vector2 _direction;
-        private Vector2Int _remaining;
 
         private void Start()
         {
-            _remaining.x = 11;
-            _remaining.y = 5;
-            _enemies = new Entity[5, 11];
             for (int i = 0; i < 5; ++i)
             {
                 for (int j = 0; j < 11; ++j)
                 {
                     Entity newEntity = Instantiate(_enemy, transform);
-                    newEntity.transform.position = _spawnPoint.transform.position + new Vector3(1.0f * j * _offset.x, 1.0f * i * _offset.y * -1.0f, 0.0f);
-                    _enemies[i,j] = newEntity;
+                    newEntity.transform.position = transform.position + new Vector3(1.0f * j * _spawnOffset.x, 1.0f * i * _spawnOffset.y * -1.0f, 0.0f);
+                    newEntity.Health.OnDie += EntityDied;
                 }
             }
 
             _direction = Vector2.right;
+            _rb.velocity = _direction * _speed;
+
+            InvokeRepeating(nameof(EnemyShoot), _attackRate, _attackRate);
         }
 
         private void Update()
@@ -40,25 +47,43 @@ namespace Durian
             Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
             Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
 
-            if (_direction == Vector2.right)
+            foreach (Transform entity in transform)
             {
-                bool IsEnemy = false;
-                for (int i = _remaining.x; i > 0; --i)
+                if (_direction == Vector2.left && entity.transform.position.x <= leftEdge.x )
                 {
-                    if (IsEnemy)
-                        break;
+                    ChangeDirection();
+                }
+                else if (_direction == Vector2.right && entity.transform.position.x >= rightEdge.x )
+                {
+                    ChangeDirection();
+                }
+            }
 
-                    for (int j = 0; j < _remaining.y; ++j)
-                    {
+        }
 
-                    }
+        private void ChangeDirection()
+        {
+            transform.position -= new Vector3(0.0f, _offset, 0.0f);
+            _direction.x *= -1.0f;
+            _rb.velocity = _direction * _speed;
+        }
+
+        private void EnemyShoot()
+        {
+            foreach (Transform entity in transform)
+            {
+                if (Random.value < (1.0f / _nbEntitiesAlive))
+                {
+                    Bullet bullet = Instantiate(_bullet, entity.position, Quaternion.identity);
+                    bullet.InitBullet(new Vector2(0.0f, -1.0f));
+                    bullet.Owner = gameObject;
                 }
             }
         }
 
-        private IEnumerator DecideShooter()
+        private void EntityDied()
         {
-            yield return null;
+            _nbEntitiesDead++;
         }
     }
 }

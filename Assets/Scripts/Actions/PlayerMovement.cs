@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Durian.Actions
@@ -11,6 +12,14 @@ namespace Durian.Actions
 
         [SerializeField, BoxGroup("Setup")] private float _speed;
         [SerializeField, BoxGroup("Setup")] private float _maxSpeed;
+
+        [SerializeField, BoxGroup("Events")] private UnityEvent _onMovement;
+
+        public event UnityAction OnMovement
+        {
+            add => _onMovement.AddListener(value);
+            remove => _onMovement.RemoveListener(value);
+        }
 
         private Vector2 _read;
         private Vector3 _leftEdge;
@@ -40,6 +49,7 @@ namespace Durian.Actions
             }
 
             _rb.AddForce(_read * _speed * Time.fixedDeltaTime, ForceMode2D.Force);
+            _onMovement?.Invoke();
         }
 
         public void Move(Vector2 read)
