@@ -43,9 +43,9 @@ namespace Durian
                     Entity newEntity = Instantiate(_enemy, transform);
                     newEntity.transform.position = transform.position + new Vector3(1.0f * j * _spawnOffset.x, 1.0f * i * _spawnOffset.y * -1.0f, 0.0f);
                     newEntity.Health.OnDie += EntityDied;
+                    MusicSyncManager.Instance.AddObjectChildToBeat(newEntity.gameObject);
                 }
             }
-            _musicSync.AddObjectChildToBeat(transform);
             _direction = Vector2.right;
             _rb.velocity = _direction * _speed;
 
