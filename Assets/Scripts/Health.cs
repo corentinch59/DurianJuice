@@ -56,6 +56,8 @@ namespace Durian
         {
             if (!IsDead) return;
             _onDie?.Invoke();
+
+            GetComponent<Animator>().SetBool("IsDead", true);
         }
     }
 }
