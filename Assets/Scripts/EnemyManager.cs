@@ -7,10 +7,12 @@ namespace Durian
 {
     public class EnemyManager : MonoBehaviour
     {
+        [SerializeField, BoxGroup("Reference")] private Bullet _bullet;
+
         [SerializeField, BoxGroup("Prefab")] private Entity _enemy;
 
         [SerializeField, BoxGroup("Reference")] private Rigidbody2D _rb;
-        [SerializeField, BoxGroup("Reference")] private Bullet _bullet;
+        [SerializeField, BoxGroup("Depandances")] private MusicSyncManager _musicSync;
 
         [SerializeField, BoxGroup("Setup")] private Vector2 _spawnOffset;
         [SerializeField, BoxGroup("Setup")] private float _speed;
@@ -35,7 +37,7 @@ namespace Durian
                     newEntity.Health.OnDie += EntityDied;
                 }
             }
-
+            _musicSync.AddObjectChildToBeat(transform);
             _direction = Vector2.right;
             _rb.velocity = _direction * _speed;
 
