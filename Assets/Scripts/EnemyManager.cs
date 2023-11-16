@@ -16,7 +16,8 @@ namespace Durian
 
         [SerializeField, BoxGroup("Setup")] private Vector2 _spawnOffset;
         [SerializeField, BoxGroup("Setup")] private float _speed;
-        [SerializeField, BoxGroup("Setup")] private float _offset;
+        [SerializeField, BoxGroup("Setup")] private float _downOffset;
+        [SerializeField, BoxGroup("Setup")] private float _sideOffset;
         [SerializeField, BoxGroup("Setup")] private float _attackRate;
 
         private Vector2 _entities = new Vector2(5,11);
@@ -70,7 +71,7 @@ namespace Durian
         private void ChangeDirection()
         {
             if (transform.position.y > _enemyStop.y)
-                transform.position -= new Vector3(0.0f, _offset, 0.0f);
+                transform.position -= new Vector3(0.0f, _downOffset, 0.0f);
 
             _direction.x *= -1.0f;
             _rb.velocity = _direction * _speed;
