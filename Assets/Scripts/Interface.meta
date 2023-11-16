@@ -1,6 +1,10 @@
 fileFormatVersion: 2
-guid: 4e71e8abc16ab264599bad8b2ba3ae4b
+<<<<<<<< HEAD:Assets/Scripts/Interface.meta
+guid: 388de996542acd548a4930f445c3c11c
 folderAsset: yes
+========
+guid: aa7236836849adb4285d82814f472ea5
+>>>>>>>> Shaders:Assets/Shader/Demo/Demo.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

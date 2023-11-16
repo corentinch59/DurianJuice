@@ -1,6 +1,10 @@
 fileFormatVersion: 2
-guid: 60c4f666cf7a65149928a6b01d762f72
+<<<<<<<< HEAD:Assets/Scripts/Actions.meta
+guid: 5b3641d890706a545a750d14fcb94b74
 folderAsset: yes
+========
+guid: dec8d559893d22b418b3ea5ab44406ca
+>>>>>>>> Shaders:Assets/Scenes/Shader Jam.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

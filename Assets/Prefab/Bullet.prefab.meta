@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefab/Bullet.prefab.meta
 guid: 5bd71b3785d06c6409ab77bb39ddf735
 PrefabImporter:
+========
+guid: 63119d9cc000fdf4b96768c82b7d49b3
+DefaultImporter:
+>>>>>>>> Shaders:Assets/Shader/Demo/Demo2.unity.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

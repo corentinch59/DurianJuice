@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefab.meta
 guid: 7f628261dd1d53f4c8ac3e16971e32e7
 folderAsset: yes
+========
+guid: d75acefafde24fa4e86d9479f5b46f7c
+>>>>>>>> Shaders:Assets/Scenes/MateoTest.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
