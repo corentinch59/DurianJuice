@@ -64,7 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 5995781147356069380}
   _playerTransform: {fileID: 3166415681193612816}
-  _speed: 20
+  _speed: 1000
   _maxSpeed: 4
   _onMovement:
     m_PersistentCalls:
@@ -354,7 +354,19 @@ MonoBehaviour:
       m_Calls: []
   _onHealth:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4798058835645646829
 MonoBehaviour:
   m_ObjectHideFlags: 0
