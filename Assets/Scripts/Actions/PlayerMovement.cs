@@ -12,6 +12,7 @@ namespace Durian.Actions
 
         [SerializeField, BoxGroup("Setup")] private float _speed;
         [SerializeField, BoxGroup("Setup")] private float _maxSpeed;
+        [SerializeField, BoxGroup("Setup")] private float _edgeOffset;
 
         [SerializeField, BoxGroup("Events")] private UnityEvent _onMovement;
 
@@ -36,13 +37,13 @@ namespace Durian.Actions
             if(_read == Vector2.zero)
                 _rb.velocity = Vector2.zero;
 
-            if (_read == Vector2.right && _playerTransform.position.x >= _rightEdge.x)
+            if (_read == Vector2.right && _playerTransform.position.x >= _rightEdge.x -_edgeOffset)
             {
                 _rb.velocity = Vector2.zero;
                 return;
             }
 
-            if (_read == Vector2.left & _playerTransform.position.x <= _leftEdge.x)
+            if (_read == Vector2.left & _playerTransform.position.x <= _leftEdge.x + _edgeOffset)
             {
                 _rb.velocity = Vector2.zero;
                 return;
