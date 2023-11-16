@@ -25,9 +25,16 @@ namespace Durian
         private int _nbEntitiesAlive => NbEntities - _nbEntitiesDead;
 
         private Vector2 _direction;
+        private Vector3 _leftEdge;
+        private Vector3 _rightEdge;
+        private Vector3 _enemyStop;
 
         private void Start()
         {
+            _leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
+            _rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+            _enemyStop = Camera.main.ViewportToWorldPoint(new Vector3(0.0f, 0.5f,0.0f));
+
             for (int i = 0; i < 5; ++i)
             {
                 for (int j = 0; j < 11; ++j)
@@ -46,16 +53,13 @@ namespace Durian
 
         private void Update()
         {
-            Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-            Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
-
             foreach (Transform entity in transform)
             {
-                if (_direction == Vector2.left && entity.transform.position.x <= leftEdge.x )
+                if (_direction == Vector2.left && entity.transform.position.x <= _leftEdge.x )
                 {
                     ChangeDirection();
                 }
-                else if (_direction == Vector2.right && entity.transform.position.x >= rightEdge.x )
+                else if (_direction == Vector2.right && entity.transform.position.x >= _rightEdge.x )
                 {
                     ChangeDirection();
                 }
@@ -65,7 +69,9 @@ namespace Durian
 
         private void ChangeDirection()
         {
-            transform.position -= new Vector3(0.0f, _offset, 0.0f);
+            if (transform.position.y > _enemyStop.y)
+                transform.position -= new Vector3(0.0f, _offset, 0.0f);
+
             _direction.x *= -1.0f;
             _rb.velocity = _direction * _speed;
         }
