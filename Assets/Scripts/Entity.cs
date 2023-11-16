@@ -14,6 +14,7 @@ namespace Durian
 
         public Health Health => _health;
 
+        public int beatIndex { get; set; }
         public void Hit(int amount)
         {
             _health.TakeDamage(amount);
@@ -22,6 +23,7 @@ namespace Durian
         public void DestroyObject()
         {
             Destroy(gameObject);
+            MusicSyncManager.Instance.RemoveObjectChildToBeat(gameObject);
         }
 
     }
