@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -16,6 +17,11 @@ namespace Durian
         public void Hit(int amount)
         {
             _health.TakeDamage(amount);
+        }
+
+        public void DestroyObject()
+        {
+            Destroy(gameObject);
         }
 
     }
