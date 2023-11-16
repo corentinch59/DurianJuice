@@ -3,7 +3,7 @@ namespace Durian
 {
     public interface IDamageable
     {
-        public void TakeDamage(float amount);
+        public void TakeDamage(int amount);
         public void Die();
     }
 }

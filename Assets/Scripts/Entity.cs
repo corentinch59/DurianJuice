@@ -13,7 +13,7 @@ namespace Durian
 
         public Health Health => _health;
 
-        public void Hit(float amount)
+        public void Hit(int amount)
         {
             _health.TakeDamage(amount);
         }

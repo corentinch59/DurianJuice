@@ -7,14 +7,15 @@ namespace Durian
 {
     public class Health : MonoBehaviour, IDamageable
     {
-        [SerializeField] private float _maxHealth;
+        [SerializeField] private int _maxHealth;
 
-        public float CurrentHealth { get; private set; }
+        public int CurrentHealth { get; private set; }
 
         public bool IsDead => CurrentHealth <= 0;
 
         [SerializeField] private UnityEvent _onDamage;
         [SerializeField] private UnityEvent _onDie;
+        [SerializeField] private UnityEvent<int> _onHealth;
 
         public event UnityAction OnDamage
         {
@@ -28,19 +29,26 @@ namespace Durian
             remove => _onDie.RemoveListener(value);
         }
 
+        public event UnityAction<int> OnHealth
+        {
+            add => _onHealth.AddListener(value);
+            remove => _onHealth.RemoveListener(value);
+        }
+
 
         private void Start()
         {
             CurrentHealth = _maxHealth;
         }
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(int amount)
         {
             Assert.IsTrue(amount >= 0);
             if (IsDead) return;
 
             CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
             _onDamage?.Invoke();
+            _onHealth?.Invoke(CurrentHealth);
             Die();
         }
 
