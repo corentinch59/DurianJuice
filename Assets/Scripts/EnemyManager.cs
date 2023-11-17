@@ -59,11 +59,11 @@ namespace Durian
         {
             foreach (Transform entity in transform)
             {
-                if (_direction == Vector2.left && entity.transform.position.x <= _leftEdge.x )
+                if (_direction == Vector2.left && entity.transform.position.x <= _leftEdge.x + _sideOffset)
                 {
                     ChangeDirection();
                 }
-                else if (_direction == Vector2.right && entity.transform.position.x >= _rightEdge.x )
+                else if (_direction == Vector2.right && entity.transform.position.x >= _rightEdge.x - _sideOffset)
                 {
                     ChangeDirection();
                 }

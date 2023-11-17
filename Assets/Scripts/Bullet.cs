@@ -15,6 +15,7 @@ namespace Durian
         [SerializeField, BoxGroup("Setup")] private float _damage;
 
         [SerializeField, BoxGroup("Events")] private UnityEvent _onBulletTouched;
+        [SerializeField, BoxGroup("Events")] private UnityEvent _onBulletSpawned;
 
         private float _elapsedTime;
         private GameObject _owner;
@@ -31,6 +32,12 @@ namespace Durian
             remove => _onBulletTouched.RemoveListener(value);
         }
 
+        public event UnityAction OnBulletSpawned
+        {
+            add => _onBulletSpawned.AddListener(value);
+            remove => _onBulletSpawned.RemoveListener(value);
+        }
+
         private void Update()
         {
             _elapsedTime += Time.deltaTime;
@@ -43,6 +50,7 @@ namespace Durian
         public void InitBullet(Vector2 direction)
         {
             _rb.velocity = direction * _bulletSpeed;
+            _onBulletSpawned?.Invoke();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
