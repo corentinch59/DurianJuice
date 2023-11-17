@@ -60,7 +60,7 @@ namespace Durian
             _onDie?.Invoke();
 
             GetComponent<Animator>().SetBool("IsDead", true);
-            ReloadScene();
+            
         }
         private void ReloadScene()
         {
