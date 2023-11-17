@@ -130,8 +130,8 @@ Material:
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
     - _GrassRadialBend: 0.005
-    - _GrassSpeed: 2
-    - _GrassWind: 3
+    - _GrassSpeed: 3
+    - _GrassWind: 2
     - _GreyscaleBlend: 1
     - _GreyscaleLuminosity: 0
     - _GreyscaleOutline: 0
