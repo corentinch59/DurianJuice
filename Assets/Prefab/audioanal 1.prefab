@@ -353,3 +353,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioAnalyzer: {fileID: 7864666143078989003}
+  _levelOfJews:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Level Of Jews
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: b7ef7523-8df6-4c45-92fd-2cf91a0ecbb6
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 1922650687617980679, guid: a3fa9a8e71722b44a8c4bbb2313d541d, type: 3}
