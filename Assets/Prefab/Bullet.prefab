@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 8984595532832653590}
-  _bulletSpeed: 5
+  _bulletSpeed: 3
   _damage: 1
   _onBulletTouched:
     m_PersistentCalls:
