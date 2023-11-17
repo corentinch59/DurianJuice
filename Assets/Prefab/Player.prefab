@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c246c22b1959074c891b7053b197847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 1114499202899686943, guid: 5bd71b3785d06c6409ab77bb39ddf735, type: 3}
+  _bullet: {fileID: 1114499202899686943, guid: 81b6e66ba5810fd438e78d015885733c, type: 3}
   _fireRate: 1
   _onShoot:
     m_PersistentCalls:
