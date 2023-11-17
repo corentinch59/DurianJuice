@@ -45,6 +45,7 @@ public class MusicSyncManager : MonoBehaviour
             {
                 _audioAnalyzer.Beats[index].OnBeat.AddListener(scaleShake.Play);
                 entityComp.beatIndex = index;
+                entityComp.isBeating = true;
                 index++;
             }
         

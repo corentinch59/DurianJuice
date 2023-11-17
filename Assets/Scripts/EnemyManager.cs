@@ -43,7 +43,10 @@ namespace Durian
                     Entity newEntity = Instantiate(_enemy, transform);
                     newEntity.transform.position = transform.position + new Vector3(1.0f * j * _spawnOffset.x, 1.0f * i * _spawnOffset.y * -1.0f, 0.0f);
                     newEntity.Health.OnDie += EntityDied;
-                    MusicSyncManager.Instance.AddObjectChildToBeat(newEntity.gameObject);
+                    int luck = Random.Range(0, 3);
+                    Debug.Log(luck);
+                    if(luck==1)
+                        MusicSyncManager.Instance.AddObjectChildToBeat(newEntity.gameObject);
                 }
             }
             _direction = Vector2.right;
