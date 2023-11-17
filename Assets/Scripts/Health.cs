@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace Durian
 {
@@ -58,6 +60,17 @@ namespace Durian
             _onDie?.Invoke();
 
             GetComponent<Animator>().SetBool("IsDead", true);
+            ReloadScene();
+        }
+        private void ReloadScene()
+        {
+            StartCoroutine(wait());
+            IEnumerator wait()
+            {
+                yield return new WaitForSeconds(2);
+
+                SceneManager.LoadScene("Game");
+            }
         }
     }
 }
