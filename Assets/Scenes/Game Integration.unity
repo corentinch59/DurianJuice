@@ -560,9 +560,9 @@ MonoBehaviour:
   _rb: {fileID: 740499223}
   _musicSync: {fileID: 894762722}
   _spawnOffset: {x: 0.5, y: 0.625}
-  _speed: 0.1
-  _downOffset: 0
-  _sideOffset: 0
+  _speed: 0.05
+  _downOffset: 0.25
+  _sideOffset: 0.25
   _attackRate: 3
 --- !u!50 &740499223
 Rigidbody2D:
@@ -781,6 +781,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1602383722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1602383724}
+  - component: {fileID: 1602383723}
+  m_Layer: 0
+  m_Name: GFeelmanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1602383723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602383722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c88640ba7215874e89590b0cd5091c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onTouchGamefeel:
+    m_UseReference: 1
+    m_Action:
+      m_Name: On Touch Gamefeel
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: dbc865e3-ae5f-4e88-ae9f-c4a5211f96f0
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -6664780639538927362, guid: a3fa9a8e71722b44a8c4bbb2313d541d, type: 3}
+--- !u!4 &1602383724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602383722}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1643081154 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8111344723408932661, guid: 8f36e7fd427c8a24385555d1f0fb715c, type: 3}
@@ -1181,3 +1237,4 @@ SceneRoots:
   - {fileID: 1718192115}
   - {fileID: 2037319081}
   - {fileID: 748169424}
+  - {fileID: 1602383724}
