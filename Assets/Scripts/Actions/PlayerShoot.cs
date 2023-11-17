@@ -14,6 +14,7 @@ namespace Durian.Actions
 
         [SerializeField, BoxGroup("Events")] private UnityEvent _onShoot;
 
+        [SerializeField] private Transform _bulletPoint;
         public event UnityAction OnShoot
         {
             add => _onShoot.AddListener(value);
@@ -36,7 +37,7 @@ namespace Durian.Actions
             if (!CanShoot) return;
 
             _elapsedTime = 0.0f;
-            Bullet bullet = Instantiate(_bullet, transform.position, Quaternion.identity);
+            Bullet bullet = Instantiate(_bullet, _bulletPoint.position, Quaternion.identity);
             bullet.InitBullet(new Vector2(0.0f, 1.0f));
             bullet.Owner = gameObject;
             _onShoot?.Invoke();
