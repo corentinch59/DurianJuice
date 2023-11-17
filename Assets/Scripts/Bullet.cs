@@ -36,7 +36,7 @@ namespace Durian
             _elapsedTime += Time.deltaTime;
             if (_elapsedTime > 2)
             {
-                Destroy(gameObject);
+                Destroy(gameObject,5);
             }
         }
 
@@ -55,7 +55,7 @@ namespace Durian
             {
                 hitable.Hit(1);
                 _onBulletTouched?.Invoke();
-                Destroy(gameObject,Time.deltaTime*2);
+                Destroy(gameObject,5f);
             }
         }
     }
