@@ -55,7 +55,7 @@ namespace Durian
             {
                 hitable.Hit(1);
                 _onBulletTouched?.Invoke();
-                Destroy(gameObject);
+                Destroy(gameObject,Time.deltaTime*2);
             }
         }
     }
