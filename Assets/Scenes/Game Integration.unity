@@ -131,6 +131,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1225270558888704383, guid: f76e5badff84f2f4189ec3863e815496, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ac2a122f146118442ad77a9b82e03f54, type: 3}
+    - target: {fileID: 1303336282271992140, guid: f76e5badff84f2f4189ec3863e815496, type: 3}
+      propertyPath: _levelOfJews.m_Action.m_Name
+      value: Level Of Jews
+      objectReference: {fileID: 0}
     - target: {fileID: 3168923884634029115, guid: f76e5badff84f2f4189ec3863e815496, type: 3}
       propertyPath: m_Name
       value: audioanal 1
@@ -551,8 +559,8 @@ MonoBehaviour:
   _enemy: {fileID: 1750345630993385984, guid: 5d406504e700a1442ae1c1269032b009, type: 3}
   _rb: {fileID: 740499223}
   _musicSync: {fileID: 894762722}
-  _spawnOffset: {x: 0.4125, y: 0.4125}
-  _speed: 0.3
+  _spawnOffset: {x: 0.5, y: 0.625}
+  _speed: 0.1
   _downOffset: 0
   _sideOffset: 0
   _attackRate: 3

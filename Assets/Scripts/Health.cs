@@ -62,7 +62,7 @@ namespace Durian
             GetComponent<Animator>().SetBool("IsDead", true);
             
         }
-        private void ReloadScene()
+        public void ReloadScene()
         {
             StartCoroutine(wait());
             IEnumerator wait()
