@@ -62,7 +62,8 @@ namespace Durian
             if (other.gameObject.TryGetComponent<IHitable>(out hitable))
             {
                 hitable.Hit(1);
-                _onBulletTouched?.Invoke();
+                if(GameFeelManager.Instance.OnTouchEvent)
+                    _onBulletTouched?.Invoke();
                 Destroy(gameObject,5f);
             }
         }
