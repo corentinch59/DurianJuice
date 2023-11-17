@@ -68,7 +68,7 @@ MonoBehaviour:
   _playerTransform: {fileID: 3166415681193612816}
   _speed: 1000
   _maxSpeed: 4
-  _edgeOffset: 0
+  _edgeOffset: 0.5
   _onMovement:
     m_PersistentCalls:
       m_Calls: []
